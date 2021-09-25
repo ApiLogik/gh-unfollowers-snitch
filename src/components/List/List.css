@@ -1,0 +1,49 @@
+.list-container ul li {
+	width: 100%;
+	display: inline-flex;
+	margin: 10px 0;
+	padding: 10px;
+	align-items: center;
+	border: 1px solid rgb(143, 35, 35);
+	border-radius: 10px;
+}
+
+.list-container ul li:hover {
+	transition: 0.5s;
+	border-color: rgb(255, 74, 74);
+}
+
+.list-container img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.list-container a {
+	font-size: 18px;
+}
+
+.pages-container{
+	width: 100%;
+	padding: 5px 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.page-number {
+	padding: 5px;
+}
+
+.arrow-next,
+.arrow-prev {
+	font-size: 22px;
+	cursor: pointer;
+	margin: 0 5px;
+}
+
+.arrow-next:hover,
+.arrow-prev:hover {
+	color: rgb(63, 241, 212);
+}

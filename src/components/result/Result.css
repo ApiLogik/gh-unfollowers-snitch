@@ -1,0 +1,73 @@
+.result-parent {
+	width: 100%;
+	font-size: 20px;
+}
+
+.show-result {
+	width: 100%;
+	margin: 30px 0;
+	padding: 20px 2%;
+	background: black;
+}
+
+.warning {
+	font-size: 16px;
+	color: rgb(63, 241, 212);
+}
+
+.counters {
+	width: 100%;
+	display: flex;
+	text-align: left;
+	justify-content: center;
+	margin: 15px 0;
+}
+
+.counters a {
+	width: 25%;
+}
+
+.counters a span {
+	font-size: 20px;
+	color: rgb(63, 241, 212);
+}
+
+label {
+	margin-right: 10px;
+}
+
+input.user-name{
+	width: 300px;
+	height: 30px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+button#enviar {
+	width: 55px;
+	height: 30px;
+	margin: 0 0 0 5px;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	color: black;
+	background-color: white;
+}
+
+.list-container {
+	width: 100%;
+}
+
+@media (max-width: 760px) {
+	button#enviar {
+		margin: 10px;
+	}
+
+	.counters {
+		flex-direction: column;
+	}
+
+	.counters a {
+		width: 100%;
+	}
+}
