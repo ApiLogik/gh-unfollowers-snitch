@@ -1,7 +1,8 @@
 import { Octokit } from "@octokit/rest";
+import env from 'react-dotenv';
 
 const octokit = new Octokit({
-	auth: process.env.REACT_APP_GHTOKEN,
+	auth: env.REACT_APP_GHTOKEN,
 	userAgent: 'gh-unfollowers-snitch-1.0.0',
 })
 
