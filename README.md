@@ -2,6 +2,8 @@
 Github (Un)followers Snitch
 ***************************************
 
+https://gh-unfollowers-snitch.herokuapp.com
+
 Reveal who don't folow you back on GitHub.
 
 Tool to help against the "follow/unfollow" tactic applied by some users;
