@@ -23,6 +23,7 @@ const Result = () => {
 	useEffect(() => {
 		const getData = async () => {
 			setLoading(true)
+
 			const response = await getFollowersData(userName);
 
 			setFollowers(response.followers);
@@ -35,7 +36,9 @@ const Result = () => {
 		}
 
 		if (userName && !dataLoaded) getData();
-	}, [userName, loading, dataLoaded]);
+	}, [userName, dataLoaded]);
+
+	useEffect(() => [loading])
 
 	const handleFormSubmit = (() => {
 		setDataLoaded(false);

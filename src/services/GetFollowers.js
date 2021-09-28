@@ -1,15 +1,21 @@
-import { Octokit } from "@octokit/rest";
-import env from 'react-dotenv';
+import ghApi from "./axios/axios";
 
-const octokit = new Octokit({
-	auth: env.REACT_APP_GHTOKEN,
-	userAgent: 'gh-unfollowers-snitch-1.0.0',
-})
-
-const getFollowersAndFollowing = async (userName, routeString = '') => {
+const getFollowersAndFollowing = async (userName, requiredData = '', total = 0) => {
 	const filteredArray = [];
+	const pages = Math.ceil(total / 100);
+	let actualPage;
 
-	return octokit.paginate(`GET /users/${userName}/${routeString}`)
+	const getAllDataPages = async () => {
+		const allPages = []
+		for (let i = 1; i <= pages; i++) {
+			actualPage = await ghApi.get(`/users/${userName}/${requiredData}?page=${i}&per_page=100`);
+			allPages.push(actualPage.data);
+		}
+		return allPages.flat();
+	}
+
+
+	return getAllDataPages()
 		.then(response => {
 			response.forEach(thisUser => {
 				filteredArray.push({
@@ -39,11 +45,18 @@ const filterDontFollowYou = async (followers, following) => {
 }
 
 const getFollowersData = async (userName) => {
-	const followers = await getFollowersAndFollowing(userName, 'followers');
-	const following = await getFollowersAndFollowing(userName, 'following');
+	const total = await ghApi.get(`/users/${userName}`).then(response => {
+		return {
+			followers: response.data.followers,
+			following: response.data.following,
+		}
+	});
+
+	const followers = await getFollowersAndFollowing(userName, 'followers', total.followers);
+	const following = await getFollowersAndFollowing(userName, 'following', total.following);
 	const filtered = await filterDontFollowYou(followers, following)
 
-	return {followers, following, ...filtered }
+	return { followers, following, ...filtered }
 }
 
 export default getFollowersData;

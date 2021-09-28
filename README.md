@@ -10,7 +10,7 @@ Tool to help against the "follow/unfollow" tactic applied by some users;
 
 You don't need to log in, but for the same reason, it doesn't allow unfollowing from the app.
 
-Makes use of the official github rest API and the Octokit/rest tool;
+Makes use of the official github rest API;
 
 Made primarily for practicing API consumption and REACT-JS;
 
@@ -22,8 +22,9 @@ Technologies & packages
 	- React-Hooks;
 	- React-Router;
 	- React-Icons / Font-Awesome;
+	- React-dotenv
 - GitHub REST API;
-- Octokit/rest;
+- Axios;
 
 ***************************************
 

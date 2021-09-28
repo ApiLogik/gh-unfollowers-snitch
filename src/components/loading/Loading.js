@@ -1,14 +1,20 @@
 import React from 'react';
 import { Bars } from 'react-loading-icons'
-import { useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 
 const Loading = () => {
-	const [fiveSec, setFiveSec]  = useState(false)
-	
+	const [fiveSec, setFiveSec] = useState(false);
+
 	useEffect(() => {
-		setTimeout(() => setFiveSec(true), 5000);
-	}, [fiveSec])
-	
+		const timer = setTimeout(() => setFiveSec(true), 3000);
+
+		//timer();
+		return () => {
+			clearTimeout(timer)
+		}
+
+	}, [])
+
 
 	return (
 		<div className="loading">
@@ -18,5 +24,5 @@ const Loading = () => {
 		</div>
 	);
 }
- 
+
 export default Loading;
