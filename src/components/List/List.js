@@ -15,7 +15,7 @@ const List = (props) => {
 			let arr;
 			let end = page * perPage;
 			let start = end - perPage;
-
+			
 			if (totalPages === 1) setPage(1);
 			if (page < totalPages) arr = props.data.slice(start, end);
 			if (page >= totalPages) arr = props.data.slice(start, props.data.length);
@@ -36,11 +36,11 @@ const List = (props) => {
 	return (
 		<ul>
 			<div className="pages-container">
-				<span>Páginas ({page} de {totalPages}):  </span>
+				{totalPages > 0 ? (<span>Pages ({page} of {totalPages}):  </span>) : ('None...')}
 				{page > 1 ? (
 					<FaChevronLeft className="arrow-prev" onClick={handlePrevPage} />
 				) : false}
-				<span className="page-number">{page}</span>
+				{totalPages > 0 ? (<span className="page-number">{page}</span>) : ('')}
 				{page < totalPages ? (
 					<FaChevronRight className="arrow-next" onClick={handleNextPage} />
 				) : false}
@@ -54,11 +54,11 @@ const List = (props) => {
 			)) : ('')}
 
 			<div className="pages-container">
-				<span>Páginas ({page} de {totalPages}):  </span>
+			{totalPages > 0 ? (<span>Pages ({page} of {totalPages}):  </span>) : ('')}
 				{page > 1 ? (
 					<FaChevronLeft className="arrow-prev" onClick={handlePrevPage} />
 				) : false}
-				<span className="page-number">{page}</span>
+				{totalPages > 0 ? (<span className="page-number">{page}</span>) : ('')}
 				{page < totalPages ? (
 					<FaChevronRight className="arrow-next" onClick={handleNextPage} />
 				) : false}

@@ -48,20 +48,20 @@ const Result = () => {
 
 	return (
 		<div className="result-parent">
-			<label htmlFor="user-name">Digite seu nome de usuário no Github*:</label>
+			<label htmlFor="user-name">Your Github username*:</label>
 			<input className="user-name" type="text" />
-			<button id="enviar" onClick={handleFormSubmit}>Vai...</button>
-			<p className="warning">*Nome de login exato. Diferencia letras maiúsculas e minúsculas.</p>
+			<button id="enviar" onClick={handleFormSubmit}>Go...</button>
+			<p className="warning">*Login name. Case sensitive.</p>
 
 			<div className="show-result">
 				{dataLoaded ? (
 					<>
-						<h2>Resultado para: "{userName}"</h2>
+						<h2>Results for: "{userName}"</h2>
 						<div className="counters">
-							<Link to="/following">Seguindo: <span>{following.length}</span></Link>
-							<Link to="/followers">Seguidores: <span>{followers.length}</span></Link>
-							<Link to="/mutual">Mútuos: <span>{mutualFollowers.length}</span></Link>
-							<Link to="/dontfollow">Não seguem: <span>{dontFollow.length}</span></Link>
+							<Link to="/following">Following: <span>{following.length}</span></Link>
+							<Link to="/followers">Followers: <span>{followers.length}</span></Link>
+							<Link to="/mutual">Mutual: <span>{mutualFollowers.length}</span></Link>
+							<Link to="/dontfollow">Don't follow: <span>{dontFollow.length}</span></Link>
 						</div>
 					</>
 				) : ('')}
@@ -77,7 +77,7 @@ const Result = () => {
 								exact path="/dontfollow"
 								render={() => (
 									<>
-										<h3>Não seguem de volta:</h3>
+										<h3>Don't follow back:</h3>
 										<List data={dontFollow} />
 									</>
 								)}
@@ -86,7 +86,7 @@ const Result = () => {
 								exact path="/following"
 								render={() => (
 									<>
-										<h3>Seguindo:</h3>
+										<h3>Following:</h3>
 										<List data={following} />
 									</>
 								)}
@@ -95,7 +95,7 @@ const Result = () => {
 								exact path="/followers"
 								render={() => (
 									<>
-										<h3>Seguidores:</h3>
+										<h3>Followers:</h3>
 										<List data={followers} />
 									</>
 								)}
@@ -104,7 +104,7 @@ const Result = () => {
 								exact path="/mutual"
 								render={() => (
 									<>
-										<h3>Mútuos:</h3>
+										<h3>Mutual followers:</h3>
 										<List data={mutualFollowers} />
 									</>
 								)}
@@ -113,13 +113,13 @@ const Result = () => {
 								path="/"
 								render={() => (
 									<>
-										<h3>Não seguem de volta:</h3>
+										<h3>Don't follow back:</h3>
 										<List data={dontFollow} />
 									</>
 								)}></Route>
 						</Switch>
 					</div>
-				) : (<p>Ainda não há resultados para exibir!</p>)}
+				) : (<p>There are no results to display yet!</p>)}
 			</div>
 		</div>
 	);

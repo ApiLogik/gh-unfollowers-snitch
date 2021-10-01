@@ -18,9 +18,9 @@ const Loading = () => {
 
 	return (
 		<div className="loading">
-			<h1>Carregando...</h1>
+			<h1>Loading...</h1>
 			<Bars />
-			{fiveSec ? (<p>Pera aê, depende da quantidade!</p>) : false}
+			{fiveSec ? (<p>Hold on! There are too many followers/following...</p>) : false}
 		</div>
 	);
 }
