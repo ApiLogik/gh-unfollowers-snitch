@@ -58,6 +58,10 @@ button#enviar {
 	width: 100%;
 }
 
+.error-msg {
+	color: rgb(255, 119, 119);
+}
+
 @media (max-width: 760px) {
 	button#enviar {
 		margin: 10px;

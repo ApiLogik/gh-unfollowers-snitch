@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
 	Switch,
 	Route,
@@ -12,6 +12,8 @@ import Loading from '../loading/Loading';
 import './Result.css';
 
 const Result = () => {
+	const [errors, setErrors] = useState([]);
+	const inputText = useRef(null);
 	const [followers, setFollowers] = useState([]);
 	const [following, setFollowing] = useState([]);
 	const [mutualFollowers, setMutualFollowers] = useState([]);
@@ -32,29 +34,40 @@ const Result = () => {
 			setDontFollow(response.dontFollowYou);
 			setLoading(false);
 			setDataLoaded(true);
-			document.querySelector('.user-name').value = '';
+			inputText.current.value = '';
 		}
 
 		if (userName && !dataLoaded) getData();
 	}, [userName, dataLoaded]);
 
-	useEffect(() => [loading])
+	useEffect(() => [loading, errors])
 
 	const handleFormSubmit = (() => {
+		const errArr = []
+		const formValue = inputText.current.value;
+		setErrors([])
+
+		if (!formValue || formValue === "") errArr.push("You didn't type anything...");
+		if (typeof formValue !== "string" ) errArr.push('Invalid search terms!');
+		if (errArr.length > 0) return setErrors([...errArr]);
+
 		setDataLoaded(false);
-		setUserName(null);
-		setUserName(document.querySelector('.user-name').value);
+		setUserName(formValue);
 	})
 
 	return (
 		<div className="result-parent">
 			<label htmlFor="user-name">Your Github username*:</label>
-			<input className="user-name" type="text" />
+			<input ref={inputText} className="user-name" type="text" required/>
 			<button id="enviar" onClick={handleFormSubmit}>Go...</button>
 			<p className="warning">*Login name. Case sensitive.</p>
 
 			<div className="show-result">
-				{dataLoaded ? (
+				{errors.length > 0 ?
+					errors.map((erro, index) => <h2 className="error-msg" key={index}>{erro}</h2>)
+				 : false}
+
+				{dataLoaded && errors.length === 0 ? (
 					<>
 						<h2>Results for: "{userName}"</h2>
 						<div className="counters">
@@ -70,7 +83,7 @@ const Result = () => {
 					<Loading />
 				) : false}
 
-				{dataLoaded ? (
+				{dataLoaded && errors.length === 0 ? (
 					<div className="list-container">
 						<Switch>
 							<Route
