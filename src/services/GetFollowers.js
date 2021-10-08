@@ -54,7 +54,7 @@ const getFollowersData = async (userName) => {
 		}
 	})
 	.catch(err => {
-		return errors.push("User doesn't exists!");
+		return errors.push("User doesn't exist!");
 	});
 
 	const followers = await getFollowersAndFollowing(userName, 'followers', total.followers);

@@ -24,7 +24,7 @@ const Result = () => {
 
 	useEffect(() => {
 		const getData = async () => {
-			setLoading(true)
+			setLoading(true);
 
 			const response = await getFollowersData(userName);
 
