@@ -45,18 +45,23 @@ const filterDontFollowYou = async (followers, following) => {
 }
 
 const getFollowersData = async (userName) => {
-	const total = await ghApi.get(`/users/${userName}`).then(response => {
+	const errors = [];
+	const total = await ghApi.get(`/users/${userName}`)
+	.then(response => {
 		return {
 			followers: response.data.followers,
 			following: response.data.following,
 		}
+	})
+	.catch(err => {
+		return errors.push("User doesn't exists!");
 	});
 
 	const followers = await getFollowersAndFollowing(userName, 'followers', total.followers);
 	const following = await getFollowersAndFollowing(userName, 'following', total.following);
 	const filtered = await filterDontFollowYou(followers, following)
-
-	return { followers, following, ...filtered }
+	if(errors.length > 0) return false;
+	return { followers, following, ...filtered };
 }
 
 export default getFollowersData;

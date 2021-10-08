@@ -28,13 +28,19 @@ const Result = () => {
 
 			const response = await getFollowersData(userName);
 
-			setFollowers(response.followers);
-			setFollowing(response.following);
-			setMutualFollowers(response.mutualFollowers);
-			setDontFollow(response.dontFollowYou);
-			setLoading(false);
-			setDataLoaded(true);
-			inputText.current.value = '';
+			if (!response) {
+				setErrors(errors => [...errors, "User doesn't exist!"]);
+				setLoading(false);
+			} else {
+				setFollowers(response.followers);
+				setFollowing(response.following);
+				setMutualFollowers(response.mutualFollowers);
+				setDontFollow(response.dontFollowYou);
+				setLoading(false);
+				setDataLoaded(true);
+			}
+
+			return inputText.current.value = '';
 		}
 
 		if (userName && !dataLoaded) getData();
@@ -48,7 +54,7 @@ const Result = () => {
 		setErrors([])
 
 		if (!formValue || formValue === "") errArr.push("You didn't type anything...");
-		if (typeof formValue !== "string" ) errArr.push('Invalid search terms!');
+		if (typeof formValue !== "string") errArr.push('Invalid search terms!');
 		if (errArr.length > 0) return setErrors([...errArr]);
 
 		setDataLoaded(false);
@@ -58,14 +64,14 @@ const Result = () => {
 	return (
 		<div className="result-parent">
 			<label htmlFor="user-name">Your Github username*:</label>
-			<input ref={inputText} className="user-name" type="text" required/>
+			<input ref={inputText} className="user-name" type="text" required />
 			<button id="enviar" onClick={handleFormSubmit}>Go...</button>
 			<p className="warning">*Login name. Case sensitive.</p>
 
 			<div className="show-result">
 				{errors.length > 0 ?
 					errors.map((erro, index) => <h2 className="error-msg" key={index}>{erro}</h2>)
-				 : false}
+					: false}
 
 				{dataLoaded && errors.length === 0 ? (
 					<>
