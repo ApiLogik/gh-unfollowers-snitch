@@ -37,31 +37,31 @@ const List = (props) => {
 		<ul>
 			<div className="pages-container">
 				{totalPages > 0 ? (<span>Pages ({page} of {totalPages}):  </span>) : ('None...')}
-				{page > 1 ? (
+				{page > 1 && (
 					<FaChevronLeft className="arrow-prev" onClick={handlePrevPage} />
-				) : false}
-				{totalPages > 0 ? (<span className="page-number">{page}</span>) : ('')}
-				{page < totalPages ? (
+				)}
+				{totalPages > 0 && (<span className="page-number">{page}</span>)}
+				{page < totalPages && (
 					<FaChevronRight className="arrow-next" onClick={handleNextPage} />
-				) : false}
+				)}
 			</div>
 			
-			{slicedArr ? slicedArr.map((user) => (
+			{slicedArr && slicedArr.map((user) => (
 				<li key={user.id}>
 					<img src={user.avatar_url} alt="avatar" />
 					<a target="_blank" href={user.url} rel="noreferrer">{user.login}</a>
 				</li>
-			)) : ('')}
+			))}
 
 			<div className="pages-container">
-			{totalPages > 0 ? (<span>Pages ({page} of {totalPages}):  </span>) : ('')}
-				{page > 1 ? (
+			{totalPages > 0 && (<span>Pages ({page} of {totalPages}):  </span>)}
+				{page > 1 && (
 					<FaChevronLeft className="arrow-prev" onClick={handlePrevPage} />
-				) : false}
-				{totalPages > 0 ? (<span className="page-number">{page}</span>) : ('')}
-				{page < totalPages ? (
+				)}
+				{totalPages > 0 && (<span className="page-number">{page}</span>)}
+				{page < totalPages && (
 					<FaChevronRight className="arrow-next" onClick={handleNextPage} />
-				) : false}
+				)}
 			</div>
 		</ul>
 

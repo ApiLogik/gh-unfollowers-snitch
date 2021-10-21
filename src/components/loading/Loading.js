@@ -20,7 +20,7 @@ const Loading = () => {
 		<div className="loading">
 			<h1>Loading...</h1>
 			<Bars />
-			{fiveSec ? (<p>Hold on! There are too many followers/following...</p>) : false}
+			{fiveSec && (<p>Hold on! There are too many followers/following...</p>)}
 		</div>
 	);
 }

@@ -69,11 +69,10 @@ const Result = () => {
 			<p className="warning">*Login name. Case sensitive.</p>
 
 			<div className="show-result">
-				{errors.length > 0 ?
-					errors.map((erro, index) => <h2 className="error-msg" key={index}>{erro}</h2>)
-					: false}
+				{errors.length > 0 &&
+					errors.map((erro, index) => <h2 className="error-msg" key={index}>{erro}</h2>)}
 
-				{dataLoaded && errors.length === 0 ? (
+				{(dataLoaded && errors.length === 0) && (
 					<>
 						<h2>Results for: "{userName}"</h2>
 						<div className="counters">
@@ -83,13 +82,13 @@ const Result = () => {
 							<Link to="/dontfollow">Don't follow: <span>{dontFollow.length}</span></Link>
 						</div>
 					</>
-				) : ('')}
+				)}
 
-				{loading ? (
+				{loading && (
 					<Loading />
-				) : false}
+				)}
 
-				{dataLoaded && errors.length === 0 ? (
+				{(dataLoaded && errors.length === 0) ? (
 					<div className="list-container">
 						<Switch>
 							<Route
